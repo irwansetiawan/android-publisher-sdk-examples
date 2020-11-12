@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.criteo.publisher.CriteoErrorCode;
@@ -47,7 +48,7 @@ public class NativeSimpleActivity extends AppCompatActivity {
     nativeLoader.loadAd();
   }
 
-  private class MyNativeAdListener extends CriteoNativeAdListener {
+  private class MyNativeAdListener implements CriteoNativeAdListener {
 
     @Override
     public void onAdReceived(CriteoNativeAd nativeAd) {

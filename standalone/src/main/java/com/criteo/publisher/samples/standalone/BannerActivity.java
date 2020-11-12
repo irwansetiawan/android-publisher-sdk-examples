@@ -20,7 +20,10 @@ import static com.criteo.publisher.samples.standalone.CriteoSampleApplication.CR
 
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.criteo.publisher.Criteo;
+import com.criteo.publisher.CriteoBannerAdListener;
 import com.criteo.publisher.CriteoBannerView;
 
 public class BannerActivity extends AppCompatActivity {
