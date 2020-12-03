@@ -20,12 +20,14 @@ import android.app.Application;
 import android.util.Log;
 import com.criteo.publisher.Criteo;
 import com.criteo.publisher.CriteoInitException;
+import com.criteo.publisher.context.UserData;
 import com.criteo.publisher.model.AdSize;
 import com.criteo.publisher.model.AdUnit;
 import com.criteo.publisher.model.BannerAdUnit;
 import com.criteo.publisher.model.InterstitialAdUnit;
 import com.criteo.publisher.model.NativeAdUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CriteoSampleApplication extends Application {
@@ -60,6 +62,14 @@ public class CriteoSampleApplication extends Application {
     } catch (CriteoInitException e) {
       Log.d("Ads", "Failed to initialize Criteo SDK", e);
     }
+
+    UserData userData = new UserData();
+    userData.set(UserData.HASHED_EMAIL, "abcdefghij");
+    userData.set(UserData.DEV_USER_ID, 123456);
+    userData.set("CustomUserData.CustomKeyString", "abc");
+    userData.set("CustomUserData.CustomKeyInt", 123);
+    userData.set("CustomUserData.CustomKeyArr", Arrays.asList("one", "two"));
+    Criteo.getInstance().setUserData(userData);
 
   }
 }
