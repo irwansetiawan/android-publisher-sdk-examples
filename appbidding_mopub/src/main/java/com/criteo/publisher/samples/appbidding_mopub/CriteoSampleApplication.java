@@ -57,6 +57,7 @@ public class CriteoSampleApplication extends Application {
 
     try {
       new Criteo.Builder(this, CRITEO_PUBLISHER_ID)
+          .debugLogsEnabled(true)
           .adUnits(criteoAdUnits)
           .init();
     } catch (CriteoInitException e) {
