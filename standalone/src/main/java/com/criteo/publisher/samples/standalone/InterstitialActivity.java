@@ -24,6 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.criteo.publisher.CriteoErrorCode;
 import com.criteo.publisher.CriteoInterstitial;
 import com.criteo.publisher.CriteoInterstitialAdListener;
+import com.criteo.publisher.context.ContextData;
+import java.util.Arrays;
 
 public class InterstitialActivity extends AppCompatActivity {
 
@@ -86,7 +88,7 @@ public class InterstitialActivity extends AppCompatActivity {
     });
 
     // Load the interstitial with ad.
-    interstitial.loadAd();
+    interstitial.loadAd(criteoContextData());
   }
 
   private void displayInterstitial() {
@@ -94,6 +96,15 @@ public class InterstitialActivity extends AppCompatActivity {
       interstitial.show();
       displayInterstitialButton.setEnabled(false);
     }
+  }
+
+  protected ContextData criteoContextData() {
+    ContextData contextData = new ContextData();
+    contextData.set(ContextData.CONTENT_URL, "https://mysite.com/article/123");
+    contextData.set("CustomDataKey.String", "abc");
+    contextData.set("CustomDataKey.Int", 123);
+    contextData.set("CustomDataKey.Arr", Arrays.asList("one", "two"));
+    return contextData;
   }
 
 }

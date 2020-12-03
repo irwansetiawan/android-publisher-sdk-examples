@@ -22,6 +22,8 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import com.criteo.publisher.CriteoBannerView;
+import com.criteo.publisher.context.ContextData;
+import java.util.Arrays;
 
 public class BannerActivity extends AppCompatActivity {
 
@@ -49,7 +51,16 @@ public class BannerActivity extends AppCompatActivity {
 
   private void displayBanner() {
     // Load the bannerView with ad.
-    bannerView.loadAd();
+    bannerView.loadAd(criteoContextData());
+  }
+
+  protected ContextData criteoContextData() {
+    ContextData contextData = new ContextData();
+    contextData.set(ContextData.CONTENT_URL, "https://mysite.com/article/123");
+    contextData.set("CustomDataKey.String", "abc");
+    contextData.set("CustomDataKey.Int", 123);
+    contextData.set("CustomDataKey.Arr", Arrays.asList("one", "two"));
+    return contextData;
   }
 
 }

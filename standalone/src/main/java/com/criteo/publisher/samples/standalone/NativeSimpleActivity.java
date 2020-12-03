@@ -34,6 +34,8 @@ import com.criteo.publisher.advancednative.CriteoNativeAdListener;
 import com.criteo.publisher.advancednative.CriteoNativeLoader;
 import com.criteo.publisher.advancednative.CriteoNativeRenderer;
 import com.criteo.publisher.advancednative.RendererHelper;
+import com.criteo.publisher.context.ContextData;
+import java.util.Arrays;
 
 public class NativeSimpleActivity extends AppCompatActivity {
 
@@ -44,7 +46,7 @@ public class NativeSimpleActivity extends AppCompatActivity {
 
     CriteoNativeLoader nativeLoader = new CriteoNativeLoader(CRITEO_NATIVE_AD_UNIT,
         new MyNativeAdListener(), new MyNativeRenderer());
-    nativeLoader.loadAd();
+    nativeLoader.loadAd(criteoContextData());
   }
 
   private class MyNativeAdListener implements CriteoNativeAdListener {
@@ -105,5 +107,14 @@ public class NativeSimpleActivity extends AppCompatActivity {
       rendererHelper.setMediaInView(criteoNativeAd.getProductMedia(),
           view.<CriteoMediaView>findViewById(R.id.ad_media));
     }
+  }
+
+  protected ContextData criteoContextData() {
+    ContextData contextData = new ContextData();
+    contextData.set(ContextData.CONTENT_URL, "https://mysite.com/article/123");
+    contextData.set("CustomDataKey.String", "abc");
+    contextData.set("CustomDataKey.Int", 123);
+    contextData.set("CustomDataKey.Arr", Arrays.asList("one", "two"));
+    return contextData;
   }
 }
