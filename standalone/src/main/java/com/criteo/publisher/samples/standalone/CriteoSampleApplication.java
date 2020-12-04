@@ -20,6 +20,7 @@ import android.app.Application;
 import android.util.Log;
 import com.criteo.publisher.Criteo;
 import com.criteo.publisher.CriteoInitException;
+import com.criteo.publisher.context.EmailHasher;
 import com.criteo.publisher.context.UserData;
 import com.criteo.publisher.model.AdSize;
 import com.criteo.publisher.model.AdUnit;
@@ -64,7 +65,7 @@ public class CriteoSampleApplication extends Application {
     }
 
     UserData userData = new UserData();
-    userData.set(UserData.HASHED_EMAIL, "abcdefghij");
+    userData.set(UserData.HASHED_EMAIL, EmailHasher.hash("email@criteo.com"));
     userData.set(UserData.DEV_USER_ID, 123456);
     userData.set("CustomUserData.CustomKeyString", "abc");
     userData.set("CustomUserData.CustomKeyInt", 123);
